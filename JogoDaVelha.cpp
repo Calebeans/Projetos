@@ -2,16 +2,36 @@
 #include <windows.h>
 #include <stdio.h>
 #include <stdlib.h>
-// autor: Calebe
 
 using namespace std;
 
-int contJogador1 = 0, contJogador2 = 0, empate = 0;
-bool fim = false;
+int contJogador1 = 0, contJogador2 = 0, empate = 0, linha = 0, coluna = 0, check = 0, confirm;
+bool fim = false, jogador1 = true, jogador2 = false, ganhar = false;
 char m[3][3];
-bool jogador1 = true, jogador2 = false, ganhar = false;
-int confirm;
-int linha = 0, coluna = 0, check = 0;
+
+void zerar();
+void desenhar();
+int verificar_inteiro();
+bool verifica_Vitoria();
+void checar();
+
+int main()
+{
+    do
+    {
+        checar();
+        system("cls");
+        cout << "Jogador 1: " << contJogador1 << endl
+             << "Jogador 2: " << contJogador2 << endl
+             << "Empate: " << empate << endl;
+        desenhar();
+        cout << "\n Outra partida?" << endl;
+        cout << "0. Sair" << endl;
+        cout << "1. Jogar de novo" << endl;
+        cin >> confirm;
+    } while (confirm == 1);
+    return 0;
+}
 
 void zerar()
 { // função para zerar as posições da matriz
@@ -43,7 +63,7 @@ void desenhar()
 
 // Verificar se o que o usuario digitou foi um numero inteiro
 int verificar_inteiro()
-{ // Calebe
+{
     int num;
     // Enquanto 'num' não for um inteiro, ele pede para digitar novamente
     while (scanf("%d", &num) != 1)
@@ -160,22 +180,4 @@ void checar()
             verifica_Vitoria();
         }
     } while (ganhar == false);
-}
-
-int main()
-{
-    do
-    {
-        checar();
-        system("cls");
-        cout << "Jogador 1: " << contJogador1 << endl
-             << "Jogador 2: " << contJogador2 << endl
-             << "Empate: " << empate << endl;
-        desenhar();
-        cout << "\n Outra partida?" << endl;
-        cout << "0. Sair" << endl;
-        cout << "1. Jogar de novo" << endl;
-        cin >> confirm;
-    } while (confirm == 1);
-    return 0;
 }
