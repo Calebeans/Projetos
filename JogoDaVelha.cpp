@@ -30,6 +30,11 @@ int main()
         cout << "1. Jogar de novo" << endl;
         cin >> confirm;
     } while (confirm == 1);
+    system("cls");
+    cout << "Obrigado por jogar!" << endl;
+    cout << "Jogador 1: " << contJogador1 << endl
+         << "Jogador 2: " << contJogador2 << endl
+         << "Empate: " << empate << endl;
     return 0;
 }
 
