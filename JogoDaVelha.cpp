@@ -8,21 +8,26 @@ using namespace std;
 int contJogador1 = 0, contJogador2 = 0, empate = 0, linha = 0, coluna = 0, check = 0, confirm;
 bool fim = false, jogador1 = true, jogador2 = false, ganhar = false;
 char m[3][3];
+string player1, player2;
 
-void zerar();
-void desenhar();
-int verificar_inteiro();
-bool verifica_Vitoria();
-void checar();
+void zerar();//Zerar as posições da matriz
+void desenhar();//Desenhar o Jogo da Velha
+int verificar_inteiro();//Verificar se foi digitado um numero
+bool verifica_Vitoria();//responsavel por verificar vitoria e empate
+void checar();//Faz todas as jogadas
 
 int main()
 {
+    cout<<"Jogador 1: ";
+    cin>>player1;
+    cout<<"Jogador 2: ";
+    cin>>player2;
     do
     {
         checar();
         system("cls");
-        cout << "Jogador 1: " << contJogador1 << endl
-             << "Jogador 2: " << contJogador2 << endl
+        cout << player1 << " " << contJogador1 << endl
+             << player2 << " " << contJogador2 << endl
              << "Empate: " << empate << endl;
         desenhar();
         cout << "\n Outra partida?" << endl;
@@ -32,8 +37,8 @@ int main()
     } while (confirm == 1);
     system("cls");
     cout << "Obrigado por jogar!" << endl;
-    cout << "Jogador 1: " << contJogador1 << endl
-         << "Jogador 2: " << contJogador2 << endl
+    cout << player1 << " " << contJogador1 << endl
+         << player2 << " " << contJogador2 << endl
          << "Empate: " << empate << endl;
     return 0;
 }
@@ -86,7 +91,6 @@ int verificar_inteiro()
 
 bool verifica_Vitoria()
 {
-
     if (m[0][0] == 'X' && m[0][1] == 'X' && m[0][2] == 'X' ||
         m[1][0] == 'X' && m[1][1] == 'X' && m[1][2] == 'X' ||
         m[2][0] == 'X' && m[2][1] == 'X' && m[2][2] == 'X' ||
@@ -113,8 +117,8 @@ bool verifica_Vitoria()
         ganhar = true;
         return true;
     }
-    // if para verificar o empate
-    else if (m[0][0] != ' ' && m[0][1] != ' ' && m[0][2] != ' ' && m[1][0] != ' ' && m[1][1] != ' ' && m[1][2] != ' ' &&
+    //if para verificar o empate
+     if (m[0][0] != ' ' && m[0][1] != ' ' && m[0][2] != ' ' && m[1][0] != ' ' && m[1][1] != ' ' && m[1][2] != ' ' &&
              m[2][0] != ' ' && m[2][1] != ' ' && m[2][2] != ' ')
     {
         empate++;
@@ -133,11 +137,11 @@ void checar()
         // if para jogada do primeiro jogador
         if (jogador1)
         {
+            system("cls");
             do
             {
-                system("cls");
                 desenhar();
-                cout << "Jogador 1:" << endl;
+                cout << player1 << endl;
                 cout << "Linha:" << endl;
                 linha = verificar_inteiro();
 
@@ -147,7 +151,8 @@ void checar()
                 linha--;
                 coluna--;
 
-                check = m[linha][coluna] != ' ' || linha < 0 || linha > 2 || coluna < 0 || coluna > 2; // check para checar as posições que pode digitar, sendo que a linha e coluna não pode ser menor que 0 e maior que 3
+                //check para checar as posições que pode digitar, sendo que a linha e coluna não pode ser menor que 0 e maior que 3
+                check = m[linha][coluna] != ' ' || linha < 0 || linha > 2 || coluna < 0 || coluna > 2; 
                 if (check)
                     cout << "Essa casa nao esta vazia ou fora do intervalo 3x3" << endl;
             } while (check);
@@ -161,11 +166,11 @@ void checar()
         // if para jogada do segundo jogador
         else if (jogador2)
         {
+            system("cls");
             do
             {
-                system("cls");
                 desenhar();
-                cout << "Jogador 2:" << endl;
+                cout << player2 << endl;
                 cout << "Linha:";
                 linha = verificar_inteiro();
 
@@ -175,7 +180,8 @@ void checar()
                 linha--;
                 coluna--;
 
-                check = m[linha][coluna] != ' ' || linha < 0 || linha > 2 || coluna < 0 || coluna > 2; // check para checar as posições que pode digitar, sendo que a linha e coluna não pode ser menor que 0 e maior que 3
+                //check para checar as posições que pode digitar, sendo que a linha e coluna não pode ser menor que 0 e maior que 3
+                check = m[linha][coluna] != ' ' || linha < 0 || linha > 2 || coluna < 0 || coluna > 2;
                 if (check)
                     cout << "Essa casa nao esta vazia ou fora do intervalo 3x3" << endl;
             } while (check);
